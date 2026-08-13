@@ -1,0 +1,35 @@
+# SalonMaster
+
+> Plataforma de gestão para salões de beleza, barbearias e negócios de estética no Brasil.
+
+## Página canônica
+
+- [Landing page](https://salonmaster.com.br/): visão geral da plataforma e perguntas frequentes.
+- [Criar conta de teste](https://salonmaster.com.br/cadastro): acesso ao fluxo de cadastro.
+
+## O que é
+
+A SalonMaster apoia a organização da rotina de negócios de beleza em uma única plataforma. A landing page apresenta agenda, clientes, equipe, serviços, produtos, rotina financeira e visão de gestão.
+
+## Público atendido
+
+- Barbearias
+- Salões de beleza
+- Estética e bem-estar
+- Profissionais que trabalham sozinhos
+- Operações com mais de uma unidade
+
+## Capacidades apresentadas
+
+- Organização de horários, profissionais e reagendamentos
+- Cadastro e histórico de clientes
+- Serviços, produtos e rotina comercial
+- Gestão de equipe, metas e comissões
+- Organização da rotina financeira e de gestão
+- Jornada de agendamento com horários disponíveis
+
+## Informações importantes
+
+- A landing page não publica preços, métricas de resultado ou promessas de retorno financeiro.
+- O CTA principal direciona para um teste gratuito de 7 dias, sem cartão de crédito, conforme apresentado na página.
+- Não há formulário de qualificação ou armazenamento de dados nesta landing page.

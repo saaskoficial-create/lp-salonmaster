@@ -1,0 +1,289 @@
+---
+import {
+  BriefcaseBusiness,
+  Building2,
+  ChevronDown,
+  Factory,
+  ChartNoAxesCombined,
+  Megaphone,
+  Network,
+  PackageCheck,
+  PawPrint,
+  Pill,
+  Presentation,
+  ShieldCheck,
+  Truck,
+} from "@lucide/astro";
+import { segments, teamBenefits } from "../data/content";
+
+const segmentIcons = [
+  Pill,
+  ShieldCheck,
+  Factory,
+  PackageCheck,
+  Truck,
+  Network,
+  Factory,
+  Building2,
+  PackageCheck,
+  PawPrint,
+  BriefcaseBusiness,
+];
+const teamIcons = [
+  ChartNoAxesCombined,
+  Megaphone,
+  Presentation,
+  Network,
+  Truck,
+  Building2,
+];
+---
+
+<section
+  class="segments section section--soft"
+  id="segmentos"
+  aria-labelledby="segments-title"
+>
+  <div class="container">
+    <div class="segments__intro">
+      <div class="section-header">
+        <p class="eyebrow" data-reveal>Para quem é</p>
+        <h2 class="section-title" id="segments-title" data-reveal>
+          Para fabricantes que dependem de canais indiretos <span
+            class="text-gradient">para chegar ao mercado.</span
+          >
+        </h2>
+      </div>
+      <p class="section-copy" data-reveal>
+        A solução tem maior aderência em operações com uma rede relevante de
+        distribuidores, revendedores ou parceiros e volume suficiente para
+        justificar uma análise recorrente dos dados.
+      </p>
+    </div>
+
+    <div class="segments__grid mobile-snap" aria-label="Segmentos atendidos">
+      {
+        segments.slice(0, -1).map((segment, index) => {
+          const Icon = segmentIcons[index];
+          return (
+            <article data-reveal>
+              <Icon size={21} stroke-width={1.8} aria-hidden="true" />
+              <h3>{segment.label}</h3>
+            </article>
+          );
+        })
+      }
+    </div>
+    <p class="mobile-scroll-hint" aria-hidden="true">
+      Deslize pelos segmentos â†’
+    </p>
+  </div>
+</section>
+
+<section class="teams section" aria-labelledby="teams-title">
+  <div class="container teams__layout">
+    <div class="teams__sticky">
+      <p class="eyebrow" data-reveal>Uma mesma visão</p>
+      <h2 class="section-title" id="teams-title" data-reveal>
+        Diferentes áreas. <span class="text-gradient"
+          >Decisões mais conectadas.</span
+        >
+      </h2>
+      <p class="section-copy" data-reveal>
+        Quando os dados da rede deixam de ficar espalhados, cada área consegue
+        olhar para a mesma operação a partir das suas responsabilidades.
+      </p>
+      <a class="button button--primary" href="#diagnostico" data-reveal
+        >Ver aplicação na minha indústria</a
+      >
+    </div>
+
+    <div class="teams__list">
+      {
+        teamBenefits.map((item, index) => {
+          const Icon = teamIcons[index];
+          return (
+            <details name="beneficio-area" open={index === 0} data-reveal>
+              <summary>
+                <span>
+                  <Icon size={22} stroke-width={1.8} aria-hidden="true" />
+                </span>
+                <h3>{item.title}</h3>
+                <ChevronDown size={19} aria-hidden="true" />
+              </summary>
+              <p>{item.description}</p>
+            </details>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .segments__intro {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .segments__intro .section-header {
+    margin-bottom: 0;
+  }
+
+  .segments__intro > .section-copy {
+    align-self: end;
+  }
+
+  .segments__grid {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 3rem;
+  }
+
+  .segments__grid article {
+    display: flex;
+    min-height: 5rem;
+    align-items: center;
+    gap: 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+    background: var(--white);
+    padding: 1rem 1.1rem;
+  }
+
+  .segments__grid :global(svg) {
+    flex: 0 0 auto;
+    color: var(--cyan);
+  }
+
+  .segments__grid h3 {
+    font-size: 0.94rem;
+    letter-spacing: -0.02em;
+  }
+
+  .teams__layout {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .teams__sticky {
+    align-self: start;
+  }
+
+  .teams__sticky h2 {
+    margin-top: 0.9rem;
+  }
+
+  .teams__sticky p {
+    margin-top: 1.2rem;
+  }
+
+  .teams__sticky .button {
+    margin-top: 1.75rem;
+  }
+
+  .teams__list {
+    border-top: 1px solid var(--border);
+  }
+
+  .teams__list details {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .teams__list summary {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.45rem 0;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .teams__list summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .teams__list summary > span {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border-radius: 0.9rem;
+    background: var(--soft-blue);
+    color: var(--brand);
+  }
+
+  .teams__list h3 {
+    font-size: 1.08rem;
+  }
+
+  .teams__list p {
+    margin: -0.45rem 2.5rem 1.35rem 4rem;
+    color: var(--muted);
+    font-size: 0.91rem;
+  }
+
+  .teams__list summary > :global(svg) {
+    color: var(--cyan);
+    transition: rotate var(--transition);
+  }
+
+  .teams__list details[open] summary > :global(svg) {
+    rotate: 180deg;
+  }
+
+  @media (min-width: 48rem) {
+    .segments__intro {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 5rem;
+    }
+
+    .segments__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .teams__layout {
+      grid-template-columns: 0.88fr 1.12fr;
+      gap: 6rem;
+    }
+
+    .teams__sticky {
+      position: sticky;
+      top: 7rem;
+    }
+  }
+
+  @media (min-width: 68rem) {
+    .segments__grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  @media (max-width: 47.999rem) {
+    .segments__grid {
+      display: flex;
+      margin-top: 2rem;
+    }
+
+    .segments__grid article {
+      min-height: 6.5rem;
+    }
+
+    .teams__layout {
+      gap: 2rem;
+    }
+
+    .teams__sticky .button {
+      margin-top: 1.25rem;
+    }
+
+    .teams__list summary {
+      padding: 1rem 0;
+    }
+
+    .teams__list p {
+      margin: -0.15rem 1.5rem 1rem 0;
+    }
+  }
+</style>

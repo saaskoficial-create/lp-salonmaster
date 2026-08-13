@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SalonMaster">
+  <defs>
+    <linearGradient id="gold" x1="112" y1="110" x2="396" y2="392" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD76B" />
+      <stop offset="1" stop-color="#E99C19" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#191D27" />
+  <g fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round" stroke-width="25">
+    <circle cx="168" cy="330" r="53" />
+    <circle cx="320" cy="330" r="53" />
+    <path d="M208 294 386 128 312 250 212 327" />
+    <path d="m283 295 108 95" />
+  </g>
+  <circle cx="390" cy="390" r="15" fill="#E99C19" />
+</svg>

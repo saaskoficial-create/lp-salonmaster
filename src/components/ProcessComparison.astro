@@ -1,0 +1,302 @@
+---
+import { ArrowDown, Check, Minus } from "@lucide/astro";
+import { comparisonItems, processItems } from "../data/content";
+---
+
+<section
+  class="process section section--dark"
+  id="como-funciona"
+  aria-labelledby="process-title"
+>
+  <div class="container">
+    <div class="process__intro">
+      <div class="section-header">
+        <p class="eyebrow" data-reveal>Como funciona</p>
+        <h2 class="section-title" id="process-title" data-reveal>
+          Dos dados dos distribuidores à inteligência para sua indústria.
+        </h2>
+      </div>
+      <p class="process__lead" data-reveal>
+        Cada operação tem canais, produtos e regras diferentes. O trabalho
+        começa entendendo essa realidade e termina com informações mais prontas
+        para análise.
+      </p>
+    </div>
+
+    <ol class="process__steps mobile-snap">
+      {
+        processItems.map((item) => (
+          <li data-reveal>
+            <span>{item.number}</span>
+            <div>
+              <>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="mobile-scroll-hint process__hint" aria-hidden="true">
+      Deslize pelas etapas â†’
+    </p>
+  </div>
+</section>
+
+<section class="comparison section" aria-labelledby="comparison-title">
+  <div class="container">
+    <div class="section-header section-header--center">
+      <p class="eyebrow" data-reveal>Sell-in × sell-out</p>
+      <h2 class="section-title" id="comparison-title" data-reveal>
+        Saber quanto o canal comprou é importante. <span class="text-gradient"
+          >Saber quanto ele vendeu muda a decisão.</span
+        >
+      </h2>
+    </div>
+
+    <div class="comparison__table" data-reveal>
+      <div class="comparison__head">
+        <span>Sem visibilidade de sell-out</span>
+        <ArrowDown size={20} aria-hidden="true" />
+        <strong>Com a Sellout</strong>
+      </div>
+      {
+        comparisonItems.map((item) => (
+          <div class="comparison__row">
+            <p>
+              <Minus size={17} aria-hidden="true" />
+              {item.before}
+            </p>
+            <span class="comparison__arrow" aria-hidden="true">
+              →
+            </span>
+            <p>
+              <Check size={17} aria-hidden="true" />
+              {item.after}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mobile-scroll-hint" aria-hidden="true">
+      Deslize para comparar â†’
+    </p>
+  </div>
+</section>
+
+<style>
+  .process {
+    overflow: hidden;
+  }
+
+  .process::before {
+    position: absolute;
+    top: -16rem;
+    right: -12rem;
+    width: 42rem;
+    height: 42rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(7 153 182 / 22%), transparent 68%);
+    content: "";
+  }
+
+  .process__intro {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .process .section-header {
+    margin-bottom: 0;
+  }
+
+  .process h2,
+  .process h3 {
+    color: var(--white);
+  }
+
+  .process__lead {
+    max-width: 35rem;
+    align-self: end;
+    color: #afc4d1;
+  }
+
+  .process__steps {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    margin-top: 3.5rem;
+  }
+
+  .process__steps li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-medium);
+    background: rgb(12 53 77 / 45%);
+    padding: 1.35rem;
+  }
+
+  .process__steps li > span {
+    display: grid;
+    width: 2.65rem;
+    height: 2.65rem;
+    place-items: center;
+    border: 1px solid #2d5a70;
+    border-radius: 0.8rem;
+    background: #08283d;
+    color: #55d7c0;
+    font-weight: 800;
+  }
+
+  .process__steps h3 {
+    font-size: 1.08rem;
+    letter-spacing: -0.025em;
+  }
+
+  .process__steps p {
+    margin-top: 0.45rem;
+    color: #aac0cc;
+    font-size: 0.88rem;
+  }
+
+  .comparison__table {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .comparison__head,
+  .comparison__row {
+    display: grid;
+    grid-template-columns: 1fr 3rem 1fr;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .comparison__head {
+    background: var(--navy-950);
+    color: #b9ccd6;
+    padding: 1.2rem 1.5rem;
+    font-weight: 730;
+  }
+
+  .comparison__head :global(svg) {
+    justify-self: center;
+    rotate: -90deg;
+    color: var(--teal);
+  }
+
+  .comparison__head strong {
+    color: var(--white);
+  }
+
+  .comparison__row {
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+    padding: 1.15rem 1.5rem;
+  }
+
+  .comparison__row:last-child {
+    border-bottom: 0;
+  }
+
+  .comparison__row p {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.91rem;
+  }
+
+  .comparison__row p:first-child {
+    color: var(--muted);
+  }
+
+  .comparison__row p:first-child :global(svg) {
+    flex: 0 0 auto;
+    margin-top: 0.25rem;
+    color: #90a3af;
+  }
+
+  .comparison__row p:last-child {
+    color: var(--ink);
+    font-weight: 650;
+  }
+
+  .comparison__row p:last-child :global(svg) {
+    flex: 0 0 auto;
+    margin-top: 0.25rem;
+    color: var(--success);
+  }
+
+  .comparison__arrow {
+    justify-self: center;
+    color: var(--cyan);
+    font-weight: 800;
+  }
+
+  @media (min-width: 48rem) {
+    .process__intro {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 5rem;
+    }
+
+    .process__steps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 47.999rem) {
+    .process__steps {
+      display: flex;
+      margin-top: 2rem;
+    }
+
+    .process__steps li {
+      min-height: 12.5rem;
+    }
+
+    .process__hint {
+      color: #aac0cc;
+    }
+
+    .comparison__head {
+      display: none;
+    }
+
+    .comparison__table {
+      display: flex;
+      width: calc(100% + var(--gutter));
+      gap: 0.85rem;
+      overflow-x: auto;
+      border: 0;
+      border-radius: 0;
+      padding: 0 0.15rem 0.8rem 0;
+      box-shadow: none;
+      scroll-snap-type: inline mandatory;
+      scrollbar-width: none;
+    }
+
+    .comparison__table::-webkit-scrollbar {
+      display: none;
+    }
+
+    .comparison__row {
+      min-height: 15rem;
+      flex: 0 0 min(82vw, 20rem);
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      padding: 1.25rem;
+      scroll-snap-align: start;
+    }
+
+    .comparison__arrow {
+      rotate: 90deg;
+    }
+  }
+</style>

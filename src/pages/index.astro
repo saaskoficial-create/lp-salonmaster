@@ -1,0 +1,520 @@
+---
+import { getImage, Picture } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SalonHero from "../components/SalonHero.astro";
+import SalonFeatureTabs from "../components/SalonFeatureTabs.astro";
+import heroImage from "../assets/human/salonmaster-hero-owner-v1.png";
+import dashboardImage from "../assets/platform/dashboard.png";
+import barberImage from "../assets/audience/barber-owner-v1.png";
+import hairStylistImage from "../assets/audience/hair-stylist-v1.png";
+import aestheticianImage from "../assets/audience/aesthetician-v1.png";
+import managerImage from "../assets/audience/multiunit-manager-v1.png";
+import "../styles/salon.css";
+
+const siteUrl =
+  import.meta.env.PUBLIC_SITE_URL?.trim() || "https://salonmaster.com.br";
+const title = "SalonMaster | Gestão para salões, barbearias e estética";
+const description =
+  "A SalonMaster centraliza agenda, clientes, financeiro, equipe, produtos e rotina comercial para salões e barbearias.";
+const trialUrl = "https://salonmaster.com.br/cadastro";
+const heroPreload = await getImage({
+  src: heroImage,
+  width: 760,
+  format: "webp",
+});
+const socialImage = "/og-salonmaster.jpg";
+const absolute = (path: string) => new URL(path, siteUrl).href;
+const faq = [
+  [
+    "A SalonMaster substitui o WhatsApp?",
+    "Não. A plataforma organiza a agenda e os dados da operação para reduzir a dependência de confirmações e encaixes manuais.",
+  ],
+  [
+    "Funciona para barbearia e salão de beleza?",
+    "Sim. A plataforma foi pensada para a rotina de barbearias, salões de beleza e negócios de estética.",
+  ],
+  [
+    "Posso usar se tenho mais de uma unidade?",
+    "A configuração é avaliada para que a gestão possa acompanhar cada unidade e a operação como um todo.",
+  ],
+  [
+    "O cliente consegue agendar sozinho?",
+    "A proposta da SalonMaster inclui uma jornada de agendamento em que o cliente consulta serviços e horários disponíveis antes de confirmar.",
+  ],
+  [
+    "O sistema ajuda a trazer clientes de volta?",
+    "A plataforma organiza o histórico de clientes e apoia ações para quem deixou de retornar, conforme a rotina definida pelo salão.",
+  ],
+];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "SalonMaster",
+      url: `${siteUrl}/`,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "SalonMaster",
+      url: `${siteUrl}/`,
+      inLanguage: "pt-BR",
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/#webpage`,
+      name: title,
+      description,
+      url: `${siteUrl}/`,
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: absolute(socialImage),
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${siteUrl}/#software`,
+      name: "SalonMaster",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description,
+      url: `${siteUrl}/`,
+      audience: {
+        "@type": "BusinessAudience",
+        audienceType: "Salões de beleza, barbearias e negócios de estética",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      mainEntity: faq.map(([question, answer]) => ({
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  {title}
+  {description}
+  image={socialImage}
+  imageAlt="Gestora de salão usando o celular para acompanhar sua operação"
+  preloadImage={heroPreload.src}
+  jsonLd={jsonLd}
+>
+  <Header />
+  <main>
+    <SalonHero />
+
+    <section class="pain section" id="gestao" aria-labelledby="pain-title">
+      <div class="container pain__grid" data-reveal>
+        <div>
+          <p class="section-kicker">O problema não é só a agenda.</p>
+          <h2 id="pain-title">
+            Quando a operação fica espalhada, o dono vira o sistema.
+          </h2>
+          <p class="section-lead">
+            Mensagens, encaixes, pagamentos, clientes que somem e contas do mês
+            não deveriam viver em lugares diferentes.
+          </p>
+        </div>
+        <ol class="pain__list">
+          <li>
+            <b>01</b><span
+              ><strong>Agenda no WhatsApp</strong><small
+                >Horários dependem de resposta, confirmação e memória.</small
+              ></span
+            >
+          </li>
+          <li>
+            <b>02</b><span
+              ><strong>Financeiro no fim do dia</strong><small
+                >Entradas, saídas e comissões demoram para ganhar clareza.</small
+              ></span
+            >
+          </li>
+          <li>
+            <b>03</b><span
+              ><strong>Clientes sem acompanhamento</strong><small
+                >Quem deixou de voltar passa despercebido na correria.</small
+              ></span
+            >
+          </li>
+        </ol>
+        <div class="section-cta">
+          <a class="button button--primary" href={trialUrl}
+            >Organizar minha rotina <span aria-hidden="true">→</span></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="flow section section--tint"
+      id="como-funciona"
+      aria-labelledby="flow-title"
+    >
+      <div class="container">
+        <p class="section-kicker" data-reveal>
+          Uma rotina mais simples para todos.
+        </p>
+        <div class="flow__heading" data-reveal>
+          <h2 id="flow-title">Do agendamento ao fechamento, tudo conversa.</h2>
+          <p>
+            O cliente encontra disponibilidade sem esperar uma resposta. A
+            equipe trabalha com uma agenda organizada. A gestão acompanha o que
+            precisa decidir.
+          </p>
+        </div>
+        <div class="flow__rail" data-reveal>
+          <article>
+            <span>01</span><h3>Cliente escolhe</h3><p>
+              Serviço, profissional e horário em uma jornada personalizada.
+            </p>
+          </article>
+          <article>
+            <span>02</span><h3>Agenda organiza</h3><p>
+              O salão visualiza os compromissos em uma rotina única.
+            </p>
+          </article>
+          <article>
+            <span>03</span><h3>Atendimento acontece</h3><p>
+              Serviços, clientes e pagamentos passam a ter contexto.
+            </p>
+          </article>
+          <article>
+            <span>04</span><h3>Gestão acompanha</h3><p>
+              A operação ganha base para agir no dia e planejar o próximo.
+            </p>
+          </article>
+        </div>
+        <div
+          class="section-cta section-cta--center management__cta"
+          data-reveal
+        >
+          <a class="button button--primary" href={trialUrl}
+            >Testar a SalonMaster grátis <span aria-hidden="true">→</span></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <SalonFeatureTabs />
+
+    <section
+      class="split section"
+      id="clientes"
+      aria-labelledby="clients-title"
+    >
+      <div class="container split__grid">
+        <div class="client-visual" aria-hidden="true" data-reveal>
+          <div class="client-visual__phone">
+            <div class="client-visual__bar"></div>
+            <small>Olá, Camila</small>
+            <strong>Vamos marcar seu próximo horário?</strong>
+            <div class="service-line">
+              <i></i><span>Corte e escova<br /><em>com Beatriz</em></span>
+            </div>
+            <button>Escolher horário</button>
+          </div>
+          <div class="client-visual__note">
+            Cliente encontra seu horário sem esperar no WhatsApp.
+          </div>
+        </div>
+        <div data-reveal>
+          <p class="section-kicker">Experiência do cliente</p>
+          <h2 id="clients-title">
+            Seu atendimento começa antes da pessoa chegar ao salão.
+          </h2>
+          <p class="section-lead">
+            Uma jornada de agendamento clara transmite organização e deixa o
+            cliente mais perto dos seus serviços, produtos e próximos retornos.
+          </p>
+          <ul class="check-list">
+            <li>Vitrine personalizada de serviços</li>
+            <li>Horários disponíveis para o cliente escolher</li>
+            <li>Lembretes e comunicação ligados à rotina</li>
+            <li>Histórico para um atendimento mais pessoal</li>
+          </ul>
+          <div class="section-cta">
+            <a class="button button--primary" href={trialUrl}
+              >Criar conta gratuita <span aria-hidden="true">→</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="management section section--dark"
+      id="negocio"
+      aria-labelledby="management-title"
+    >
+      <div class="container management__grid">
+        <div data-reveal>
+          <p class="section-kicker section-kicker--light">
+            Gestão que acompanha seu crescimento
+          </p>
+          <h2 id="management-title">
+            Mais controle do negócio sem deixar o atendimento de lado.
+          </h2>
+          <p>
+            Financeiro, clientes, estoque, cobranças recorrentes, metas e equipe
+            passam a apoiar uma operação mais organizada.
+          </p>
+          <a class="button button--light" href={trialUrl}
+            >Começar teste grátis <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <div
+          class="management__board"
+          data-reveal
+          aria-label="Visão ilustrativa de gestão da SalonMaster"
+        >
+          <div class="management__board-head">
+            <span>Resumo da operação</span><i>Hoje</i>
+          </div>
+          <div class="management__board-bars">
+            <div><small>Agenda</small><b style="--bar: 83%"></b></div>
+            <div><small>Clientes</small><b style="--bar: 59%"></b></div>
+            <div><small>Financeiro</small><b style="--bar: 72%"></b></div>
+          </div>
+          <div class="management__board-row">
+            <span>Metas da equipe</span><strong>Acompanhe o ritmo do mês</strong
+            >
+          </div>
+          <div class="management__board-row">
+            <span>Loja e produtos</span><strong
+              >Tenha visão do que precisa de atenção</strong
+            >
+          </div>
+        </div>
+        <div class="section-cta section-cta--center" data-reveal>
+          <a class="button button--primary" href={trialUrl}
+            >Começar teste grátis <span aria-hidden="true">→</span></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="audience section"
+      id="para-quem"
+      aria-labelledby="audience-title"
+    >
+      <div class="container">
+        <p class="section-kicker" data-reveal>Feita para negócios de beleza</p>
+        <div class="audience__heading" data-reveal>
+          <h2 id="audience-title">
+            Da agenda de quem trabalha sozinho à operação com mais de uma
+            unidade.
+          </h2>
+          <p>
+            Configure a plataforma conforme a sua realidade e descubra como
+            centralizar a rotina do negócio.
+          </p>
+        </div>
+        <div class="audience__cards" data-reveal>
+          <article class="audience__card--barber">
+            <div class="audience__copy">
+              <span>Barbearias</span><p>
+                Agenda, equipe, clientes e operação em uma visão organizada.
+              </p>
+            </div>
+            <Picture
+              src={barberImage}
+              widths={[220, 320, 480]}
+              sizes="(max-width: 34rem) 48vw, (max-width: 58rem) 30vw, 12vw"
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+              loading="lazy"
+              alt="Barbeiro profissional com tesoura e pente"
+            />
+          </article>
+          <article class="audience__card--salon">
+            <div class="audience__copy">
+              <span>Salões de beleza</span><p>
+                Serviços, profissionais e relacionamento em uma experiência
+                única.
+              </p>
+            </div>
+            <Picture
+              src={hairStylistImage}
+              widths={[220, 320, 480]}
+              sizes="(max-width: 34rem) 48vw, (max-width: 58rem) 30vw, 12vw"
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+              loading="lazy"
+              alt="Profissional de salão com escova de cabelo"
+            />
+          </article>
+          <article class="audience__card--aesthetic">
+            <div class="audience__copy">
+              <span>Estética e bem-estar</span><p>
+                Mais contexto para acompanhar atendimentos, produtos e retornos.
+              </p>
+            </div>
+            <Picture
+              src={aestheticianImage}
+              widths={[220, 320, 480]}
+              sizes="(max-width: 34rem) 48vw, (max-width: 58rem) 30vw, 12vw"
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+              loading="lazy"
+              alt="Profissional de estética com produtos e tablet"
+            />
+          </article>
+          <article class="audience__card--multiunit">
+            <div class="audience__copy">
+              <span>Mais de uma unidade</span><p>
+                Uma visão mais organizada para acompanhar cada unidade e a rede.
+              </p>
+            </div>
+            <Picture
+              src={managerImage}
+              widths={[220, 320, 480]}
+              sizes="(max-width: 34rem) 48vw, (max-width: 58rem) 30vw, 12vw"
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+              loading="lazy"
+              alt="Gestora de rede de salões com tablet"
+            />
+          </article>
+        </div>
+        <div class="section-cta section-cta--center audience__cta" data-reveal>
+          <a class="button button--primary" href={trialUrl}
+            >Ver como funciona na prática <span aria-hidden="true">→</span></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="objections section section--tint"
+      aria-labelledby="objections-title"
+    >
+      <div class="container objections__grid">
+        <div data-reveal>
+          <p class="section-kicker">Não é mais uma ferramenta solta.</p>
+          <h2 id="objections-title">Complementa o que seu negócio já usa.</h2>
+        </div>
+        <div class="objections__items" data-reveal>
+          <details open>
+            <summary>“Já usamos WhatsApp para agendar.” <span>+</span></summary>
+            <p>
+              O WhatsApp continua sendo um canal importante. A SalonMaster ajuda
+              a tirar da conversa manual o que pode ficar organizado em uma
+              jornada de agendamento.
+            </p>
+          </details>
+          <details>
+            <summary>“Já tenho uma planilha financeira.” <span>+</span></summary
+            >
+            <p>
+              Planilhas podem apoiar a gestão, mas não centralizam a operação
+              inteira. A plataforma aproxima rotina, caixa, clientes e equipe.
+            </p>
+          </details>
+          <details>
+            <summary>“Meu salão é pequeno.” <span>+</span></summary>
+            <p>
+              A plataforma acompanha a rotina de quem trabalha sozinho e de
+              operações com mais profissionais, ajudando a diminuir a carga
+              manual conforme o negócio cresce.
+            </p>
+          </details>
+        </div>
+        <div class="section-cta objections__cta" data-reveal>
+          <a class="button button--primary" href={trialUrl}
+            >Começar meu teste grátis <span aria-hidden="true">→</span></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="final section" aria-labelledby="final-title">
+      <div class="container final__box" data-reveal>
+        <div>
+          <p class="section-kicker section-kicker--light">SalonMaster</p>
+          <h2 id="final-title">
+            Comece a organizar o salão antes da próxima mensagem chegar.
+          </h2>
+          <p>
+            Crie sua conta gratuita e experimente uma rotina mais clara para a
+            agenda, os clientes e a equipe.
+          </p>
+          <a class="button button--light" href={trialUrl}
+            >Testar grátis por 7 dias <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <div class="final__preview" aria-hidden="true">
+          <div class="final__preview-glow"></div>
+          <div class="final__preview-frame">
+            <div class="final__preview-chrome"><i></i><i></i><i></i></div>
+            <Picture
+              src={dashboardImage}
+              widths={[480, 720, 1000]}
+              sizes="(max-width: 48rem) 82vw, 500px"
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+              loading="lazy"
+              alt=""
+            />
+          </div>
+          <span class="final__preview-note">Sua rotina, em uma visão.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq section" id="duvidas" aria-labelledby="faq-title">
+      <div class="container faq__grid">
+        <div data-reveal>
+          <p class="section-kicker">Dúvidas comuns</p>
+          <h2 id="faq-title">
+            Antes de conhecer o sistema, você pode querer saber.
+          </h2>
+        </div>
+        <div data-reveal>
+          {
+            faq.map(([question, answer]) => (
+              <details>
+                <summary>
+                  {question}
+                  <span>+</span>
+                </summary>
+                <p>{answer}</p>
+              </details>
+            ))
+          }
+        </div>
+        <div class="section-cta faq__cta" data-reveal>
+          <a class="button button--primary" href={trialUrl}
+            >Começar meu teste grátis <span aria-hidden="true">→</span></a
+          >
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style is:global>
+  .reveal-ready [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition:
+      opacity 560ms ease,
+      transform 560ms ease;
+  }
+  .sm-header__mobile[hidden] {
+    display: none !important;
+  }
+</style>

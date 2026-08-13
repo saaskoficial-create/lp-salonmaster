@@ -1,0 +1,91 @@
+---
+import { Picture } from "astro:assets";
+import { Scissors } from "@lucide/astro";
+import heroBarber from "../assets/human/salonmaster-hero-barber-v1.png";
+import heroOwner from "../assets/human/salonmaster-hero-owner-v1.png";
+const trialUrl = "https://salonmaster.com.br/cadastro";
+---
+
+<section class="salon-hero" id="inicio" aria-labelledby="hero-title">
+  <div class="container salon-hero__grid">
+    <div class="salon-hero__content" data-reveal>
+      <h1>
+        Menos correria. <span>Mais controle para o seu salão.</span>
+      </h1>
+      <p>
+        Agenda, clientes, equipe e rotina financeira em uma plataforma feita
+        para você atender melhor e gerenciar com mais clareza.
+      </p>
+      <div class="salon-hero__actions">
+        <a class="button button--primary" href={trialUrl}
+          >Testar grátis por 7 dias <span aria-hidden="true">→</span></a
+        >
+        <a class="button button--ghost" href="#plataforma">Ver a plataforma</a>
+      </div>
+      <ul class="salon-hero__points">
+        <li>Sem cartão de crédito</li>
+        <li>Para salão, barbearia e estética</li>
+      </ul>
+    </div>
+    <div
+      class="salon-hero__visual"
+      data-reveal
+      aria-label="Ilustração de uma dona de salão e da plataforma SalonMaster"
+    >
+      <div class="salon-hero__halo"></div>
+      <div class="salon-hero__brand-mark" aria-hidden="true">
+        <Scissors stroke-width={1.15} />
+      </div>
+      <div class="salon-hero__mock salon-hero__mock--calendar">
+        <div class="mock-head"><span>Agenda de hoje</span><b>+</b></div>
+        <div class="mock-time">
+          <i>09:00</i><span><b>Camila</b><small>Corte e escova</small></span>
+        </div>
+        <div class="mock-time">
+          <i>11:00</i><span><b>Mariana</b><small>Coloração</small></span>
+        </div>
+        <div class="mock-time">
+          <i>14:30</i><span><b>Larissa</b><small>Manutenção</small></span>
+        </div>
+      </div>
+      <div class="salon-hero__person salon-hero__person--owner">
+        <Picture
+          src={heroOwner}
+          widths={[440, 600, 760]}
+          sizes="(max-width: 48rem) 84vw, 47vw"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+          loading="eager"
+          fetchpriority="high"
+          alt="Dona de salão acompanhando os agendamentos pelo celular"
+        />
+      </div>
+      <div class="salon-hero__person salon-hero__person--barber">
+        <Picture
+          src={heroBarber}
+          widths={[320, 440, 560]}
+          sizes="(max-width: 48rem) 54vw, 31vw"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+          loading="eager"
+          fetchpriority="high"
+          alt="Barbeiro acompanhando a rotina da barbearia"
+        />
+      </div>
+      <div class="salon-hero__mock salon-hero__mock--reminder">
+        <i>✓</i><span
+          ><small>Lembrete automático</small><b
+            >Seu próximo horário está confirmado.</b
+          ></span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="salon-hero__ribbon" aria-label="Fluxo da SalonMaster">
+    <div class="container">
+      <span>Cliente</span><i></i><span>Agenda</span><i></i><span
+        >Atendimento</span
+      ><i></i><span>Gestão</span><i></i><strong>Decisão</strong>
+    </div>
+  </div>
+</section>

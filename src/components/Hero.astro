@@ -1,0 +1,415 @@
+---
+import {
+  ArrowRight,
+  Check,
+  DatabaseZap,
+  MessageCircleMore,
+  TrendingUp,
+} from "@lucide/astro";
+import { Picture } from "astro:assets";
+import heroImage from "../assets/human/hero-man-symbol-waist-cutout-v7.png";
+import { site } from "../data/content";
+---
+
+<section class="hero" id="inicio">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="container hero__grid">
+    <div class="hero__content">
+      <p class="eyebrow" data-reveal>
+        Inteligência de sell-out para indústrias
+      </p>
+      <h1 data-reveal>
+        Você vende para o distribuidor. <span class="text-gradient"
+          >Mas enxerga o que acontece depois?</span
+        >
+      </h1>
+      <p class="hero__copy" data-reveal>
+        A Sellout captura, trata e centraliza os dados da sua rede para mostrar
+        o que gira, onde o estoque pede atenção e quais canais e regiões abrem
+        novas oportunidades.
+      </p>
+      <div class="hero__actions" data-reveal>
+        <a class="button button--primary" href="#diagnostico">
+          Quero enxergar meu sell-out
+          <ArrowRight size={19} aria-hidden="true" />
+        </a>
+        <a
+          class="button button--secondary"
+          href={`${site.whatsappUrl}?text=${encodeURIComponent("Olá, gostaria de entender como a Sellout pode ajudar minha indústria.")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <MessageCircleMore size={19} aria-hidden="true" />
+          Falar pelo WhatsApp
+        </a>
+      </div>
+      <ul class="hero__trust" aria-label="Diferenciais" data-reveal>
+        <li>
+          <Check size={16} aria-hidden="true" /> Dados tratados e padronizados
+        </li>
+        <li><Check size={16} aria-hidden="true" /> Visão consolidada em BI</li>
+      </ul>
+    </div>
+
+    <div class="hero__visual" data-reveal>
+      <div class="hero__stage">
+        <div class="hero__data-grid" aria-hidden="true"></div>
+        <Picture
+          src={heroImage}
+          alt="Profissional de inteligência comercial segurando um tablet"
+          widths={[420, 560, 760]}
+          sizes="(max-width: 48rem) 100vw, 50vw"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+
+      <div class="signal-card signal-card--top">
+        <span class="signal-card__icon"><TrendingUp size={18} /></span>
+        <span
+          ><small>Leitura por canal</small><strong
+            >Performance comparável</strong
+          ></span
+        >
+      </div>
+
+      <div class="signal-card signal-card--bottom">
+        <span class="signal-card__icon"><DatabaseZap size={18} /></span>
+        <span
+          ><small>Acompanhamento</small><strong>Atualização diária</strong
+          ></span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__ribbon" data-reveal>
+    <div class="container hero__ribbon-content">
+      <span>Sell-in</span><i aria-hidden="true"></i>
+      <span>Distribuidores</span><i aria-hidden="true"></i>
+      <span>Tratamento</span><i aria-hidden="true"></i>
+      <span>Sell-out</span><i aria-hidden="true"></i>
+      <strong>Decisão</strong>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(4rem, 8vw, 7rem) 0 0;
+    background: linear-gradient(180deg, #fff 0%, #f8fbfd 100%);
+  }
+
+  .hero__glow {
+    position: absolute;
+    top: -20rem;
+    right: -18rem;
+    width: 48rem;
+    height: 48rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(7 153 182 / 14%), transparent 66%);
+    pointer-events: none;
+  }
+
+  .hero__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    align-items: center;
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+
+  .hero__content {
+    max-width: 37rem;
+  }
+
+  .hero h1 {
+    max-width: 13ch;
+    margin-top: 0.85rem;
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+    text-wrap: pretty;
+  }
+
+  .hero__copy {
+    max-width: 37rem;
+    margin-top: 1.25rem;
+    color: var(--muted);
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.65rem;
+  }
+
+  .hero__trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    margin-top: 1.35rem;
+    color: #4f6879;
+    font-size: 0.86rem;
+    font-weight: 650;
+  }
+
+  .hero__trust li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .hero__trust :global(svg) {
+    color: var(--success);
+  }
+
+  .hero__visual {
+    position: relative;
+    width: 100%;
+    max-width: 37rem;
+    align-self: stretch;
+    justify-self: end;
+  }
+
+  .hero__stage {
+    position: relative;
+    height: 100%;
+    min-height: 38rem;
+    isolation: isolate;
+  }
+
+  .hero__stage::before {
+    position: absolute;
+    z-index: -2;
+    inset: 7% 1% 4% 8%;
+    border-radius: 48% 48% 2.5rem 2.5rem;
+    background:
+      radial-gradient(
+        circle at 70% 22%,
+        rgb(21 184 154 / 25%),
+        transparent 31%
+      ),
+      linear-gradient(145deg, #e8f7fb 2%, #d7f0f4 55%, #f5fbfc 100%);
+    content: "";
+  }
+
+  .hero__data-grid {
+    position: absolute;
+    z-index: -1;
+    inset: 11% 0 12% 9%;
+    background-image: radial-gradient(rgb(0 66 103 / 20%) 1px, transparent 1px);
+    background-size: 1.35rem 1.35rem;
+    mask-image: linear-gradient(115deg, #000, transparent 68%);
+  }
+
+  .hero__stage > :global(picture) {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: -2.1rem;
+    width: 118%;
+  }
+
+  .hero__stage > :global(picture img) {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 24px 28px rgb(3 19 31 / 18%));
+  }
+
+  .signal-card {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 12rem;
+    border: 1px solid rgb(255 255 255 / 65%);
+    border-radius: 1rem;
+    background: rgb(255 255 255 / 91%);
+    box-shadow: 0 16px 42px rgb(3 19 31 / 18%);
+    padding: 0.85rem 1rem;
+    backdrop-filter: blur(12px);
+  }
+
+  .signal-card--top {
+    top: 2rem;
+    left: -7rem;
+  }
+
+  .signal-card--bottom {
+    right: -2rem;
+    bottom: 2.5rem;
+  }
+
+  .signal-card__icon {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border-radius: 0.7rem;
+    background: var(--soft-blue);
+    color: var(--brand);
+  }
+
+  .signal-card__pulse {
+    width: 0.72rem;
+    height: 0.72rem;
+    border: 3px solid #b4eee2;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 0 5px rgb(21 184 154 / 12%);
+  }
+
+  .signal-card small,
+  .signal-card strong {
+    display: block;
+    line-height: 1.35;
+  }
+
+  .signal-card small {
+    color: var(--muted);
+    font-size: 0.7rem;
+  }
+
+  .signal-card strong {
+    color: var(--ink);
+    font-size: 0.82rem;
+  }
+
+  .hero__ribbon {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-top: 0;
+    border-block: 1px solid var(--border);
+    background: rgb(248 251 253 / 94%);
+    box-shadow: 0 -14px 32px rgb(4 50 76 / 5%);
+    backdrop-filter: blur(6px);
+  }
+
+  .hero__ribbon-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.35rem;
+    color: var(--muted);
+    font-size: 0.84rem;
+    font-weight: 730;
+  }
+
+  .hero__ribbon-content i {
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, var(--border), var(--cyan));
+  }
+
+  .hero__ribbon-content strong {
+    color: var(--brand);
+  }
+
+  @media (min-width: 56rem) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 1.02fr) minmax(24rem, 0.98fr);
+    }
+  }
+
+  @media (max-width: 55.999rem) {
+    .hero__visual {
+      width: min(100%, 36rem);
+      justify-self: center;
+    }
+
+    .signal-card--top {
+      left: 1rem;
+    }
+
+    .signal-card--bottom {
+      right: 1rem;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .hero {
+      padding-top: 2.35rem;
+    }
+
+    .hero__grid {
+      gap: 1.4rem;
+    }
+
+    .hero h1 {
+      margin-top: 0.75rem;
+      font-size: clamp(2rem, 9.2vw, 2.35rem);
+      line-height: 1.05;
+    }
+
+    .hero__copy {
+      margin-top: 1rem;
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .hero__actions {
+      margin-top: 1.4rem;
+    }
+
+    .hero__trust {
+      display: none;
+    }
+
+    .hero__actions {
+      display: grid;
+    }
+
+    .hero__ribbon-content span:nth-of-type(2),
+    .hero__ribbon-content i:nth-of-type(2),
+    .hero__ribbon-content span:nth-of-type(3),
+    .hero__ribbon-content i:nth-of-type(3) {
+      display: none;
+    }
+
+    .signal-card {
+      min-width: auto;
+      padding: 0.7rem 0.8rem;
+    }
+
+    .signal-card--top {
+      display: none;
+    }
+
+    .signal-card--bottom {
+      right: 0.75rem;
+      bottom: 0.75rem;
+    }
+
+    .hero__stage {
+      min-height: 19rem;
+    }
+
+    .hero__stage::before {
+      inset: 8% 0 3% 5%;
+    }
+
+    .hero__stage > :global(picture) {
+      right: -2%;
+      bottom: -4rem;
+      width: 112%;
+    }
+
+    .hero__ribbon {
+      margin-top: -1rem;
+    }
+
+    .hero__ribbon-content {
+      padding-block: 1rem;
+    }
+  }
+</style>

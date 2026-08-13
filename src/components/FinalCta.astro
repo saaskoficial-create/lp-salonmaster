@@ -1,0 +1,222 @@
+---
+import { ArrowRight, MessageCircleMore } from "@lucide/astro";
+import { Picture } from "astro:assets";
+import finalCtaImage from "../assets/human/final-cta-woman-waist-cutout-v3.png";
+import { site } from "../data/content";
+---
+
+<section
+  class="final-cta section section--soft"
+  aria-labelledby="final-cta-title"
+>
+  <div class="container">
+    <div class="final-cta__panel" data-reveal>
+      <div class="final-cta__backdrop" aria-hidden="true"></div>
+      <div class="final-cta__media" aria-hidden="true">
+        <Picture
+          src={finalCtaImage}
+          alt=""
+          widths={[480, 720, 960]}
+          sizes="(max-width: 48rem) 86vw, 520px"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+          loading="lazy"
+        />
+      </div>
+      <div class="final-cta__content">
+        <p class="eyebrow">Seu próximo passo</p>
+        <h2 id="final-cta-title">
+          Pare de enxergar apenas o que vendeu. <span
+            >Entenda o que acontece depois.</span
+          >
+        </h2>
+        <p>
+          Conte como sua rede funciona e veja se a Sellout faz sentido para a
+          realidade da sua indústria.
+        </p>
+        <div class="final-cta__actions">
+          <a class="button button--light" href="#diagnostico"
+            >Solicitar diagnóstico <ArrowRight
+              size={19}
+              aria-hidden="true"
+            /></a
+          >
+          <a
+            class="final-cta__whatsapp"
+            href={site.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MessageCircleMore size={19} aria-hidden="true" /> Falar pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-cta__panel {
+    position: relative;
+    min-height: 31rem;
+    margin-top: 4.5rem;
+    isolation: isolate;
+    border-radius: var(--radius-large);
+    padding: clamp(2.75rem, 5vw, 4.5rem);
+  }
+
+  .final-cta__backdrop {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    background: var(--navy-950);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .final-cta__backdrop::before {
+    position: absolute;
+    z-index: 1;
+    right: 4.5rem;
+    bottom: 5.25rem;
+    width: 23rem;
+    height: 8.5rem;
+    border: 0.55rem solid rgb(31 187 211 / 72%);
+    border-radius: 5rem;
+    content: "";
+    transform: rotate(-8deg);
+  }
+
+  .final-cta__backdrop::after {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      var(--navy-950) 0%,
+      rgb(3 19 31 / 98%) 45%,
+      rgb(3 19 31 / 72%) 63%,
+      rgb(3 19 31 / 8%) 100%
+    );
+    content: "";
+  }
+
+  .final-cta__media {
+    position: absolute;
+    z-index: 1;
+    top: -6rem;
+    right: 1.25rem;
+    bottom: 0;
+    width: min(45%, 33rem);
+    height: auto;
+    pointer-events: none;
+  }
+
+  .final-cta__media :global(picture),
+  .final-cta__media :global(img) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .final-cta__media :global(img) {
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 1.5rem 2rem rgb(0 14 24 / 28%));
+  }
+
+  .final-cta__content {
+    position: relative;
+    z-index: 3;
+    max-width: 36rem;
+  }
+
+  .final-cta h2 {
+    max-width: 17ch;
+    margin-top: 0.9rem;
+    color: var(--white);
+    font-size: clamp(2rem, 3.4vw, 3.1rem);
+    line-height: 1.05;
+  }
+
+  .final-cta h2 span {
+    color: #55d7c0;
+  }
+
+  .final-cta__content > p:not(.eyebrow) {
+    max-width: 37rem;
+    margin-top: 1.2rem;
+    color: #b4c8d2;
+  }
+
+  .final-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .final-cta__whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--white);
+    font-weight: 730;
+  }
+
+  @media (max-width: 47.999rem) {
+    .final-cta__panel {
+      display: block;
+      min-height: 44rem;
+      margin-top: 2rem;
+      padding: 2rem 1.25rem 21.5rem;
+    }
+
+    .final-cta__backdrop::after {
+      background: linear-gradient(
+        180deg,
+        var(--navy-950) 0%,
+        rgb(3 19 31 / 98%) 52%,
+        rgb(3 19 31 / 58%) 77%,
+        rgb(3 19 31 / 12%) 100%
+      );
+    }
+
+    .final-cta__backdrop::before {
+      right: -7rem;
+      bottom: 4rem;
+      width: 22rem;
+      height: 7rem;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(1.85rem, 8.2vw, 2.1rem);
+      line-height: 1.08;
+    }
+
+    .final-cta__media {
+      position: absolute;
+      z-index: 1;
+      top: auto;
+      right: -8%;
+      bottom: 0;
+      width: 86%;
+      height: 23rem;
+      margin: 0;
+    }
+
+    .final-cta__media :global(img) {
+      object-position: center bottom;
+    }
+
+    .final-cta__actions {
+      display: grid;
+    }
+
+    .final-cta__whatsapp {
+      justify-content: center;
+      padding: 0.75rem;
+    }
+  }
+</style>

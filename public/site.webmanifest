@@ -1,0 +1,19 @@
+{
+  "name": "SalonMaster",
+  "short_name": "SalonMaster",
+  "description": "Gestão para salões, barbearias e negócios de estética.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#191d27",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

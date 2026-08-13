@@ -1,0 +1,115 @@
+---
+import { Scissors } from "@lucide/astro";
+
+const trialUrl = "https://salonmaster.com.br/cadastro";
+---
+
+<footer class="sm-footer">
+  <div class="container sm-footer__grid">
+    <div>
+      <a class="sm-brand" href="#inicio">
+        <span><Scissors size={19} stroke-width={2.2} aria-hidden="true" /></span
+        >
+        <b>SalonMaster</b>
+      </a>
+      <p>
+        Gestão mais organizada para salões, barbearias e negócios de estética.
+      </p>
+    </div>
+    <div>
+      <strong>Plataforma</strong><a href="#plataforma">Funcionalidades</a><a
+        href="#como-funciona">Como funciona</a
+      ><a href="#para-quem">Para sua operação</a>
+    </div>
+    <div>
+      <strong>Comece agora</strong><a href={trialUrl}>Começar teste grátis</a><a
+        href="#duvidas">Dúvidas frequentes</a
+      ><a
+        href="https://salonmaster.com.br/"
+        target="_blank"
+        rel="noopener noreferrer">Site atual</a
+      >
+    </div>
+  </div>
+  <div class="container sm-footer__bottom">
+    <span
+      >© {new Date().getFullYear()} SalonMaster. Todos os direitos reservados.</span
+    ><span>Agenda, clientes e gestão em uma mesma visão.</span>
+  </div>
+</footer>
+<style>
+  .sm-footer {
+    border-top: 1px solid #e5e7f0;
+    background: #fff;
+    padding: 4rem 0 1.3rem;
+  }
+  .sm-footer__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .sm-footer .sm-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #151a3b;
+    text-decoration: none;
+  }
+  .sm-footer .sm-brand span {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border: 1px solid #f5d8bd;
+    border-radius: 0.65rem;
+    background: #fff4e8;
+    color: #d76a18;
+  }
+  .sm-footer .sm-brand b {
+    font-size: 1.1rem;
+    letter-spacing: -0.055em;
+  }
+  .sm-footer p {
+    max-width: 17rem;
+    margin-top: 1rem;
+    color: #69718a;
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+  .sm-footer__grid > div:not(:first-child) {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+  }
+  .sm-footer strong {
+    color: #151a3b;
+    font-size: 0.78rem;
+  }
+  .sm-footer a:not(.sm-brand) {
+    color: #69718a;
+    font-size: 0.78rem;
+    text-decoration: none;
+  }
+  .sm-footer a:hover {
+    color: #d76a18;
+  }
+  .sm-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    border-top: 1px solid #edf0f5;
+    padding-top: 1.25rem;
+    color: #8790a6;
+    font-size: 0.67rem;
+  }
+  @media (max-width: 40rem) {
+    .sm-footer__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .sm-footer__bottom {
+      display: grid;
+    }
+  }
+</style>

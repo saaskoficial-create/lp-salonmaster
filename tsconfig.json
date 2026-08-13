@@ -1,0 +1,28 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "src/pages/**/*.astro",
+    "src/layouts/BaseLayout.astro",
+    "src/components/Header.astro",
+    "src/components/Footer.astro",
+    "src/components/SalonHero.astro",
+    "src/components/SalonFeatureTabs.astro",
+    "src/components/Seo.astro",
+    "src/components/ScrollReveal.astro"
+  ],
+  "exclude": [
+    "dist",
+    "output",
+    "tmp",
+    "src/components/AudienceSections.astro",
+    "src/components/CampaignTracking.astro",
+    "src/components/FinalCta.astro",
+    "src/components/Hero.astro",
+    "src/components/ObjectionsFaq.astro",
+    "src/components/ProblemVisibility.astro",
+    "src/components/ProcessComparison.astro",
+    "src/components/QualificationForm.astro",
+    "src/components/SalonForm.astro"
+  ]
+}

@@ -1,0 +1,286 @@
+---
+const whatsapp =
+  import.meta.env.PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "";
+---
+
+<section
+  class="salon-form section section--dark"
+  id="diagnostico"
+  aria-labelledby="form-title"
+>
+  <div class="container salon-form__grid">
+    <div data-reveal>
+      <p class="section-kicker section-kicker--light">
+        Demonstração personalizada
+      </p>
+      <h2 id="form-title">Conte um pouco sobre seu estabelecimento.</h2>
+      <p>
+        Com essas informações, a equipe entende melhor sua rotina antes da
+        demonstração.
+      </p>
+      <ul class="salon-form__assurances">
+        <li>Leva cerca de dois minutos</li><li>
+          Nenhum dado é salvo nesta página
+        </li><li>Você confirma o envio pelo WhatsApp</li>
+      </ul>
+    </div>
+    <div class="salon-form__card" data-reveal>
+      <div class="salon-form__progress">
+        <span data-progress></span><small data-progress-label>1 de 6</small>
+      </div>
+      <form data-salon-form data-whatsapp={whatsapp} novalidate>
+        <fieldset data-step>
+          <legend>Como podemos chamar você?</legend>
+          <label
+            >Nome<input
+              name="nome"
+              autocomplete="name"
+              required
+              placeholder="Seu nome"
+            /></label
+          >
+        </fieldset>
+        <fieldset data-step hidden>
+          <legend>Qual é o seu e-mail corporativo?</legend>
+          <label
+            >E-mail<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              placeholder="voce@empresa.com"
+            /></label
+          >
+        </fieldset>
+        <fieldset data-step hidden>
+          <legend>Qual é o seu WhatsApp?</legend>
+          <label
+            >WhatsApp<input
+              name="whatsapp"
+              inputmode="tel"
+              autocomplete="tel"
+              required
+              placeholder="(00) 00000-0000"
+            /></label
+          >
+        </fieldset>
+        <fieldset data-step hidden>
+          <legend>Qual é o nome do estabelecimento?</legend>
+          <label
+            >Empresa<input
+              name="empresa"
+              autocomplete="organization"
+              required
+              placeholder="Nome do salão ou barbearia"
+            /></label
+          >
+        </fieldset>
+        <fieldset data-step hidden>
+          <legend>Como é a sua operação hoje?</legend>
+          <label
+            >Tipo de negócio<select name="tipo" required
+              ><option value="">Escolha uma opção</option><option
+                >Barbearia</option
+              ><option>Salão de beleza</option><option
+                >Estética e bem-estar</option
+              ><option>Studio de beleza</option><option>Outro</option></select
+            ></label
+          >
+          <label
+            >Quantidade de profissionais<select name="profissionais" required
+              ><option value="">Escolha uma opção</option><option
+                >Trabalho sozinho(a)</option
+              ><option>2 a 5 profissionais</option><option
+                >6 a 15 profissionais</option
+              ><option>Mais de 15 profissionais</option></select
+            ></label
+          >
+        </fieldset>
+        <fieldset data-step hidden>
+          <legend>O que mais toma tempo na sua rotina?</legend>
+          <div class="salon-form__options">
+            {
+              [
+                "Agendamentos e confirmações",
+                "Financeiro e controle de gastos",
+                "Clientes que não retornam",
+                "Equipe e comissões",
+                "Estoque e produtos",
+                "Organizar tudo em um só lugar",
+              ].map((item) => (
+                <label>
+                  <>
+                    <input type="radio" name="desafio" value={item} required />
+                    <span>{item}</span>
+                  </>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+        <div class="salon-form__actions">
+          <button type="button" data-back hidden>Voltar</button><button
+            class="button button--primary"
+            type="button"
+            data-next><span>Continuar</span> <b aria-hidden="true">→</b></button
+          >
+        </div>
+        <p class="salon-form__error" role="alert" aria-live="polite" data-error>
+        </p>
+      </form>
+      <div class="salon-form__success" data-success hidden tabindex="-1">
+        <span>✓</span><h3>Pronto para continuar.</h3><p>
+          Sua mensagem foi organizada. Confirme o envio no WhatsApp para falar
+          com a equipe.
+        </p><a class="button button--primary" href="#" data-fallback
+          >Continuar pelo WhatsApp</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("[data-salon-form]");
+  const steps = [
+    ...(form?.querySelectorAll<HTMLFieldSetElement>("[data-step]") ?? []),
+  ];
+  const next = form?.querySelector<HTMLButtonElement>("[data-next]");
+  const back = form?.querySelector<HTMLButtonElement>("[data-back]");
+  const error = form?.querySelector<HTMLElement>("[data-error]");
+  const progress = document.querySelector<HTMLElement>("[data-progress]");
+  const progressLabel = document.querySelector<HTMLElement>(
+    "[data-progress-label]",
+  );
+  const card = document.querySelector<HTMLElement>(".salon-form__card");
+  const success = document.querySelector<HTMLElement>("[data-success]");
+  const fallback = document.querySelector<HTMLAnchorElement>("[data-fallback]");
+  let active = 0;
+
+  const update = () => {
+    steps.forEach((step, index) => (step.hidden = index !== active));
+    if (progress)
+      progress.style.width = String(((active + 1) / steps.length) * 100) + "%";
+    if (progressLabel)
+      progressLabel.textContent = String(active + 1) + " de " + steps.length;
+    if (back) back.hidden = active === 0;
+    if (next) {
+      const text = next.querySelector("span");
+      if (text)
+        text.textContent =
+          active === steps.length - 1 ? "Continuar pelo WhatsApp" : "Continuar";
+    }
+    if (error) error.textContent = "";
+  };
+
+  const valid = () => {
+    const current = steps[active];
+    const controls = [
+      ...current.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
+        "input, select",
+      ),
+    ];
+    const phone = current.querySelector<HTMLInputElement>('[name="whatsapp"]');
+    if (phone) {
+      const digits = phone.value.replace(/\D/g, "");
+      phone.setCustomValidity(
+        digits.length === 10 || digits.length === 11
+          ? ""
+          : "Informe um WhatsApp com DDD.",
+      );
+    }
+    const invalid = controls.find((control) => !control.checkValidity());
+    if (!invalid) return true;
+    if (error)
+      error.textContent =
+        invalid.validationMessage || "Preencha este campo para continuar.";
+    invalid.reportValidity();
+    invalid.focus();
+    return false;
+  };
+
+  const whatsappUrl = () => {
+    if (!form) return "";
+    const value = new FormData(form);
+    let attribution: Record<string, string> = {};
+    try {
+      attribution = JSON.parse(
+        sessionStorage.getItem("salonmaster_attribution") || "{}",
+      );
+    } catch {}
+    const lines = [
+      "Olá! Quero conhecer a SalonMaster.",
+      "",
+      "Nome: " + (value.get("nome") || ""),
+      "E-mail: " + (value.get("email") || ""),
+      "WhatsApp: " + (value.get("whatsapp") || ""),
+      "Estabelecimento: " + (value.get("empresa") || ""),
+      "Tipo de negócio: " + (value.get("tipo") || ""),
+      "Profissionais: " + (value.get("profissionais") || ""),
+      "Principal desafio: " + (value.get("desafio") || ""),
+    ];
+    if (attribution.utm_source) lines.push("Origem: " + attribution.utm_source);
+    if (attribution.utm_campaign)
+      lines.push("Campanha: " + attribution.utm_campaign);
+    ["gclid", "fbclid", "msclkid"].forEach((key) => {
+      if (attribution[key]) lines.push(key + ": " + attribution[key]);
+    });
+    const number = form.dataset.whatsapp;
+    return number
+      ? "https://wa.me/" +
+          number +
+          "?text=" +
+          encodeURIComponent(lines.join("\n"))
+      : "";
+  };
+
+  next?.addEventListener("click", () => {
+    if (!valid()) return;
+    if (active < steps.length - 1) {
+      active += 1;
+      update();
+      return;
+    }
+    const url = whatsappUrl();
+    if (!url) {
+      if (error)
+        error.textContent = "O canal comercial ainda não foi configurado.";
+      return;
+    }
+    if (fallback) fallback.href = url;
+    form?.setAttribute("hidden", "");
+    card
+      ?.querySelector<HTMLElement>(".salon-form__progress")
+      ?.setAttribute("hidden", "");
+    if (success) {
+      success.hidden = false;
+      success.focus();
+    }
+    window.open(url, "_blank", "noopener,noreferrer");
+  });
+  back?.addEventListener("click", () => {
+    if (active > 0) {
+      active -= 1;
+      update();
+    }
+  });
+  const params = new URLSearchParams(window.location.search);
+  const keys = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term",
+    "gclid",
+    "fbclid",
+    "msclkid",
+  ];
+  const values: Record<string, string> = {};
+  keys.forEach((key) => {
+    const value = params.get(key);
+    if (value) values[key] = value.slice(0, 180);
+  });
+  if (Object.keys(values).length)
+    sessionStorage.setItem("salonmaster_attribution", JSON.stringify(values));
+  update();
+</script>

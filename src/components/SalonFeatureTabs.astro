@@ -1,0 +1,228 @@
+---
+import { Picture } from "astro:assets";
+import agendaImage from "../assets/platform/agenda.png";
+import clientsImage from "../assets/platform/clientes.png";
+import dashboardImage from "../assets/platform/dashboard.png";
+import professionalsImage from "../assets/platform/profissionais.png";
+import servicesImage from "../assets/platform/servicos.png";
+
+const features = [
+  {
+    id: "agenda",
+    label: "Agenda",
+    eyebrow: "Agenda semanal",
+    title: "Uma agenda que continua funcionando enquanto você atende.",
+    text: "Visualize compromissos, profissionais e horários em uma única rotina — sem depender de procurar mensagens ou anotações.",
+    items: [
+      "Horários organizados por profissional",
+      "Visão semanal dos atendimentos",
+      "Reagendamentos em uma rotina centralizada",
+    ],
+    image: agendaImage,
+    alt: "Tela da agenda semanal da SalonMaster com horários e atendimentos",
+  },
+  {
+    id: "clientes",
+    label: "Clientes",
+    eyebrow: "Base de clientes",
+    title: "Cada atendimento pode ajudar a construir o próximo retorno.",
+    text: "Encontre os clientes da sua operação em uma lista organizada para consultar histórico, contato e relacionamento sem perder contexto.",
+    items: [
+      "Cadastro centralizado de clientes",
+      "Contato disponível na rotina",
+      "Base para acompanhar retornos",
+    ],
+    image: clientsImage,
+    alt: "Tela de clientes da SalonMaster com cadastros apresentados de forma segura",
+  },
+  {
+    id: "equipe",
+    label: "Equipe",
+    eyebrow: "Gestão da equipe",
+    title: "Profissionais, serviços e metas em uma visão mais clara.",
+    text: "Organize as informações que a equipe precisa para trabalhar e dê mais contexto à gestão de metas e da rotina de cada profissional.",
+    items: [
+      "Profissionais e serviços associados",
+      "Horários de trabalho organizados",
+      "Acompanhamento de metas e comissão",
+    ],
+    image: professionalsImage,
+    alt: "Tela de profissionais da SalonMaster com metas e serviços",
+  },
+  {
+    id: "servicos",
+    label: "Serviços",
+    eyebrow: "Vitrine de serviços",
+    title: "Seus serviços bem apresentados antes mesmo do atendimento começar.",
+    text: "Cadastre serviços, duração e valores para estruturar melhor o que o cliente encontra e o que a operação acompanha.",
+    items: [
+      "Serviços e duração cadastrados",
+      "Valores visíveis para a operação",
+      "Base para uma vitrine organizada",
+    ],
+    image: servicesImage,
+    alt: "Tela de serviços da SalonMaster com cards de procedimentos",
+  },
+  {
+    id: "gestao",
+    label: "Gestão",
+    eyebrow: "Resumo da operação",
+    title: "Comece o dia sabendo o que merece atenção na operação.",
+    text: "Tenha uma visão de agenda, pendências e rotina para decidir com mais contexto, sem precisar montar tudo manualmente.",
+    items: [
+      "Resumo de atendimentos do período",
+      "Pendências em uma visão objetiva",
+      "Acesso rápido às áreas do negócio",
+    ],
+    image: dashboardImage,
+    alt: "Painel inicial da SalonMaster com resumo operacional",
+  },
+];
+const trialUrl = "https://salonmaster.com.br/cadastro";
+---
+
+<section
+  class="feature-section section"
+  id="plataforma"
+  aria-labelledby="feature-title"
+>
+  <div class="container">
+    <p class="section-kicker" data-reveal>
+      Uma plataforma para a rotina inteira
+    </p>
+    <div class="feature-section__heading" data-reveal>
+      <h2 id="feature-title">
+        Veja a rotina do seu negócio em uma mesma tela.
+      </h2>
+      <p>
+        Navegue pelas áreas da plataforma e conheça algumas das telas que apoiam
+        a operação de salões, barbearias e negócios de estética.
+      </p>
+    </div>
+
+    <div class="feature-tabs" data-tabs data-reveal>
+      <div
+        class="feature-tabs__controls"
+        role="tablist"
+        aria-label="Áreas da plataforma SalonMaster"
+      >
+        {
+          features.map((feature, index) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={index === 0 ? "true" : "false"}
+              aria-controls={`panel-${feature.id}`}
+              id={`tab-${feature.id}`}
+              tabindex={index === 0 ? 0 : -1}
+              data-tab={feature.id}
+            >
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              {feature.label}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="feature-tabs__panels">
+        {
+          features.map((feature, index) => (
+            <article
+              class="feature-panel"
+              id={`panel-${feature.id}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${feature.id}`}
+              hidden={index !== 0}
+              data-panel={feature.id}
+            >
+              <div class="feature-panel__copy">
+                <p class="feature-panel__eyebrow">{feature.eyebrow}</p>
+                <h3>{feature.title}</h3>
+                <p>{feature.text}</p>
+                <ul>
+                  {feature.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="product-shot">
+                <div class="product-shot__glow" aria-hidden="true" />
+                <div class="product-shot__frame">
+                  <div class="product-shot__chrome" aria-hidden="true">
+                    <>
+                      <i />
+                      <i />
+                      <i />
+                      <span>SalonMaster</span>
+                    </>
+                  </div>
+                  <Picture
+                    src={feature.image}
+                    widths={[480, 720, 1000]}
+                    sizes="(max-width: 48rem) 88vw, (max-width: 70rem) 54vw, 620px"
+                    formats={["avif", "webp"]}
+                    fallbackFormat="webp"
+                    loading="lazy"
+                    alt={feature.alt}
+                  />
+                </div>
+                <span class="product-shot__tag" aria-hidden="true">
+                  <b>✓</b> Tela real da plataforma
+                </span>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+    <div class="section-cta section-cta--center" data-reveal>
+      <a class="button button--primary" href={trialUrl}
+        >Começar teste grátis <span aria-hidden="true">→</span></a
+      >
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-tabs]");
+  const controls = [
+    ...(root?.querySelectorAll<HTMLButtonElement>("[data-tab]") ?? []),
+  ];
+  const panels = [
+    ...(root?.querySelectorAll<HTMLElement>("[data-panel]") ?? []),
+  ];
+
+  const selectTab = (control: HTMLButtonElement) => {
+    const active = control.dataset.tab;
+    controls.forEach((item) => {
+      const selected = item === control;
+      item.setAttribute("aria-selected", String(selected));
+      item.tabIndex = selected ? 0 : -1;
+    });
+    panels.forEach((panel) => {
+      panel.hidden = panel.dataset.panel !== active;
+    });
+  };
+
+  controls.forEach((control, index) => {
+    control.addEventListener("click", () => selectTab(control));
+    control.addEventListener("keydown", (event) => {
+      if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key))
+        return;
+      event.preventDefault();
+      const nextIndex =
+        event.key === "Home"
+          ? 0
+          : event.key === "End"
+            ? controls.length - 1
+            : (index +
+                (event.key === "ArrowRight" ? 1 : -1) +
+                controls.length) %
+              controls.length;
+      const next = controls[nextIndex];
+      selectTab(next);
+      next.focus();
+    });
+  });
+</script>

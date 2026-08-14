@@ -1,0 +1,44 @@
+:root {
+  color-scheme: light;
+
+  /* Core brand colors */
+  --sm-orange-600: #f36b21;
+  --sm-orange-650: #e85b12;
+  --sm-orange-800: #b54708;
+  --sm-orange-300: #f4a261;
+  --sm-ink-950: #21171d;
+  --sm-plum-800: #4a2338;
+
+  /* Warm neutrals */
+  --sm-canvas: #fffcf9;
+  --sm-surface: #ffffff;
+  --sm-surface-alt: #f7f0ea;
+  --sm-surface-brand: #fff0e4;
+  --sm-border: #e6dad2;
+  --sm-text: #5f565b;
+  --sm-text-muted: #756b70;
+  --sm-text-inverse: #fffdfb;
+
+  /* Semantic roles */
+  --color-brand: var(--sm-orange-600);
+  --color-brand-hover: var(--sm-orange-650);
+  --color-brand-text: var(--sm-orange-800);
+  --color-premium: var(--sm-plum-800);
+  --color-bg-page: var(--sm-canvas);
+  --color-bg-section: var(--sm-surface-alt);
+  --color-bg-card: var(--sm-surface);
+  --color-bg-hero: var(--sm-ink-950);
+  --color-bg-brand-soft: var(--sm-surface-brand);
+  --color-text-heading: var(--sm-ink-950);
+  --color-text-body: var(--sm-text);
+  --color-text-muted: var(--sm-text-muted);
+  --color-text-inverse: var(--sm-text-inverse);
+  --color-border: var(--sm-border);
+  --color-action-primary: var(--sm-orange-600);
+  --color-action-primary-hover: var(--sm-orange-650);
+  --color-action-primary-text: var(--sm-ink-950);
+  --color-focus-ring: var(--sm-orange-800);
+  --color-success: #167a5a;
+  --color-warning: #a95b00;
+  --color-danger: #b43b3b;
+}

@@ -1,6 +1,6 @@
 ---
 import { Picture } from "astro:assets";
-import { Scissors } from "@lucide/astro";
+import BrandLogo from "./BrandLogo.astro";
 import heroBarber from "../assets/human/salonmaster-hero-barber-v1.png";
 import heroOwner from "../assets/human/salonmaster-hero-owner-v1.png";
 const trialUrl = "https://salonmaster.com.br/cadastro";
@@ -34,7 +34,7 @@ const trialUrl = "https://salonmaster.com.br/cadastro";
     >
       <div class="salon-hero__halo"></div>
       <div class="salon-hero__brand-mark" aria-hidden="true">
-        <Scissors stroke-width={1.15} />
+        <BrandLogo variant="symbol-orange" decorative />
       </div>
       <div class="salon-hero__mock salon-hero__mock--calendar">
         <div class="mock-head"><span>Agenda de hoje</span><b>+</b></div>

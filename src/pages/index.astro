@@ -6,6 +6,9 @@ import Footer from "../components/Footer.astro";
 import SalonHero from "../components/SalonHero.astro";
 import SalonFeatureTabs from "../components/SalonFeatureTabs.astro";
 import heroImage from "../assets/human/salonmaster-hero-owner-v1.png";
+import ownerCandidImage from "../assets/human/salonmaster-owner-candid-v1.png";
+import aestheticsConsultationImage from "../assets/human/salonmaster-aesthetics-consultation-v1.png";
+import teamCandidImage from "../assets/human/salonmaster-team-candid-v1.png";
 import dashboardImage from "../assets/platform/dashboard.png";
 import barberImage from "../assets/audience/barber-owner-v1.png";
 import hairStylistImage from "../assets/audience/hair-stylist-v1.png";
@@ -125,6 +128,17 @@ const jsonLd = {
             Mensagens, encaixes, pagamentos, clientes que somem e contas do mês
             não deveriam viver em lugares diferentes.
           </p>
+          <figure class="human-photo human-photo--owner">
+            <Picture
+              src={ownerCandidImage}
+              widths={[520, 760, 1040]}
+              sizes="(max-width: 58rem) 94vw, 35vw"
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+              loading="lazy"
+              alt="Dona de um negócio de beleza usando o celular durante a rotina de trabalho"
+            />
+          </figure>
         </div>
         <ol class="pain__list">
           <li>
@@ -196,6 +210,18 @@ const jsonLd = {
             </p>
           </article>
         </div>
+        <figure class="human-photo human-photo--team" data-reveal>
+          <Picture
+            src={teamCandidImage}
+            widths={[720, 1040, 1440]}
+            sizes="(max-width: 58rem) 94vw, 76rem"
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+            loading="lazy"
+            alt="Equipe de um negócio de beleza acompanhando a operação em um tablet"
+          />
+          <figcaption>Mais clareza para decidir junto com a equipe.</figcaption>
+        </figure>
         <div
           class="section-cta section-cta--center management__cta"
           data-reveal
@@ -405,6 +431,17 @@ const jsonLd = {
         <div data-reveal>
           <p class="section-kicker">Não é mais uma ferramenta solta.</p>
           <h2 id="objections-title">Complementa o que seu negócio já usa.</h2>
+          <figure class="human-photo human-photo--aesthetics">
+            <Picture
+              src={aestheticsConsultationImage}
+              widths={[440, 680, 900]}
+              sizes="(max-width: 58rem) 94vw, 34vw"
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+              loading="lazy"
+              alt="Profissional de estética apresentando informações a uma cliente em um tablet"
+            />
+          </figure>
         </div>
         <div class="objections__items" data-reveal>
           <details open>

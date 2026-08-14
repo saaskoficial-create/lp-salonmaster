@@ -1,5 +1,5 @@
 ---
-import { Scissors } from "@lucide/astro";
+import BrandLogo from "./BrandLogo.astro";
 
 const trialUrl = "https://salonmaster.com.br/cadastro";
 ---
@@ -7,10 +7,12 @@ const trialUrl = "https://salonmaster.com.br/cadastro";
 <footer class="sm-footer">
   <div class="container sm-footer__grid">
     <div>
-      <a class="sm-brand" href="#inicio">
-        <span><Scissors size={19} stroke-width={2.2} aria-hidden="true" /></span
-        >
-        <b>SalonMaster</b>
+      <a
+        class="sm-brand"
+        href="#inicio"
+        aria-label="SalonMaster - página inicial"
+      >
+        <BrandLogo variant="negative" decorative />
       </a>
       <p>
         Gestão mais organizada para salões, barbearias e negócios de estética.
@@ -39,8 +41,8 @@ const trialUrl = "https://salonmaster.com.br/cadastro";
 </footer>
 <style>
   .sm-footer {
-    border-top: 1px solid #e5e7f0;
-    background: #fff;
+    border-top: 1px solid var(--color-premium);
+    background: var(--color-bg-hero);
     padding: 4rem 0 1.3rem;
   }
   .sm-footer__grid {
@@ -51,28 +53,16 @@ const trialUrl = "https://salonmaster.com.br/cadastro";
   .sm-footer .sm-brand {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    color: #151a3b;
     text-decoration: none;
   }
-  .sm-footer .sm-brand span {
-    display: grid;
-    width: 2rem;
-    height: 2rem;
-    place-items: center;
-    border: 1px solid #f5d8bd;
-    border-radius: 0.65rem;
-    background: #fff4e8;
-    color: #d76a18;
-  }
-  .sm-footer .sm-brand b {
-    font-size: 1.1rem;
-    letter-spacing: -0.055em;
+  .sm-footer .sm-brand :global(.brand-logo) {
+    --brand-logo-symbol-size: 2.15rem;
+    --brand-logo-wordmark-size: 1.16rem;
   }
   .sm-footer p {
     max-width: 17rem;
     margin-top: 1rem;
-    color: #69718a;
+    color: rgb(255 253 251 / 72%);
     font-size: 0.82rem;
     line-height: 1.55;
   }
@@ -82,25 +72,25 @@ const trialUrl = "https://salonmaster.com.br/cadastro";
     gap: 0.75rem;
   }
   .sm-footer strong {
-    color: #151a3b;
+    color: var(--color-text-inverse);
     font-size: 0.78rem;
   }
   .sm-footer a:not(.sm-brand) {
-    color: #69718a;
+    color: rgb(255 253 251 / 72%);
     font-size: 0.78rem;
     text-decoration: none;
   }
   .sm-footer a:hover {
-    color: #d76a18;
+    color: var(--color-brand);
   }
   .sm-footer__bottom {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
     margin-top: 3rem;
-    border-top: 1px solid #edf0f5;
+    border-top: 1px solid rgb(255 253 251 / 16%);
     padding-top: 1.25rem;
-    color: #8790a6;
+    color: rgb(255 253 251 / 56%);
     font-size: 0.67rem;
   }
   @media (max-width: 40rem) {

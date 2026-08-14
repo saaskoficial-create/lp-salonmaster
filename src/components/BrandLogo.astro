@@ -1,0 +1,81 @@
+---
+import symbol from "../assets/brand/salonmaster-symbol.svg?raw";
+
+type Variant = "positive" | "negative" | "symbol-orange" | "symbol-light";
+
+interface Props {
+  variant?: Variant;
+  decorative?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "positive",
+  decorative = false,
+  class: className,
+} = Astro.props;
+const symbolOnly = variant.startsWith("symbol-");
+---
+
+<span
+  class:list={["brand-logo", `brand-logo--${variant}`, className]}
+  aria-hidden={decorative ? "true" : undefined}
+  role={decorative ? undefined : "img"}
+  aria-label={decorative ? undefined : "SalonMaster"}
+>
+  <span class="brand-logo__symbol" set:html={symbol} />
+  {
+    !symbolOnly && (
+      <span class="brand-logo__wordmark">
+        <>
+          <span>Salon</span>
+          <strong>Master</strong>
+        </>
+      </span>
+    )
+  }
+</span>
+
+<style>
+  .brand-logo {
+    --brand-logo-mark: var(--color-brand);
+    --brand-logo-wordmark: var(--color-text-heading);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48em;
+    color: var(--brand-logo-wordmark);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .brand-logo--negative {
+    --brand-logo-wordmark: var(--color-text-inverse);
+  }
+  .brand-logo--symbol-orange,
+  .brand-logo--symbol-light {
+    display: inline-grid;
+  }
+  .brand-logo--symbol-light {
+    --brand-logo-mark: var(--color-text-inverse);
+  }
+  .brand-logo__symbol {
+    display: grid;
+    width: var(--brand-logo-symbol-size, 2.05em);
+    aspect-ratio: 763 / 696;
+    flex: 0 0 auto;
+    color: var(--brand-logo-mark);
+  }
+  .brand-logo__symbol :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .brand-logo__wordmark {
+    color: var(--brand-logo-wordmark);
+    font-size: var(--brand-logo-wordmark-size, 1.1rem);
+    font-weight: 650;
+    letter-spacing: -0.065em;
+  }
+  .brand-logo__wordmark strong {
+    font-weight: 800;
+  }
+</style>

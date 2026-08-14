@@ -68,10 +68,26 @@ for (const filename of [
   "sitemap.xml",
   "llms.txt",
   "favicon.svg",
+  "favicon-32.png",
+  "apple-touch-icon.png",
+  "pwa-192.png",
+  "pwa-512.png",
+  "pwa-maskable-512.png",
   "site.webmanifest",
   "og-salonmaster.jpg",
 ])
   if (!existsSync(join(distRoot, filename))) fail(`Missing dist/${filename}.`);
+const manifest = readFileSync(join(distRoot, "site.webmanifest"), "utf8");
+for (const icon of [
+  "favicon.svg",
+  "pwa-192.png",
+  "pwa-512.png",
+  "pwa-maskable-512.png",
+])
+  if (!manifest.includes(`\"/${icon}\"`))
+    fail(`Manifest icon missing: ${icon}.`);
+if (!manifest.includes('"theme_color": "#21171d"'))
+  fail("Manifest theme color is not aligned with the SalonMaster palette.");
 const llms = readFileSync(join(distRoot, "llms.txt"), "utf8");
 if (!llms.startsWith("# SalonMaster") || !llms.includes("Página canônica"))
   fail("llms.txt is missing the curated SalonMaster context.");

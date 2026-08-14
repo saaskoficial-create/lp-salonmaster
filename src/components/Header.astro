@@ -1,5 +1,5 @@
 ---
-import { Scissors } from "@lucide/astro";
+import BrandLogo from "./BrandLogo.astro";
 
 const nav = [
   ["Plataforma", "#plataforma"],
@@ -13,8 +13,7 @@ const trialUrl = "https://salonmaster.com.br/cadastro";
 <header class="sm-header">
   <div class="container sm-header__inner">
     <a class="sm-brand" href="#inicio" aria-label="SalonMaster - página inicial"
-      ><span><Scissors size={19} stroke-width={2.2} aria-hidden="true" /></span
-      ><b>SalonMaster</b></a
+      ><BrandLogo decorative /></a
     >
     <nav aria-label="Navegação principal">
       {nav.map(([label, href]) => <a href={href}>{label}</a>)}
@@ -58,8 +57,8 @@ const trialUrl = "https://salonmaster.com.br/cadastro";
     z-index: 30;
     top: 0;
     width: 100%;
-    border-bottom: 1px solid #e7e8f2;
-    background: rgb(255 255 255 / 0.9);
+    border-bottom: 1px solid var(--color-border);
+    background: rgb(255 252 249 / 0.9);
     backdrop-filter: blur(14px);
   }
   .sm-header__inner {
@@ -71,23 +70,11 @@ const trialUrl = "https://salonmaster.com.br/cadastro";
   .sm-brand {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    color: #151a3b;
     text-decoration: none;
   }
-  .sm-brand span {
-    display: grid;
-    width: 2rem;
-    height: 2rem;
-    place-items: center;
-    border: 1px solid #f5d8bd;
-    border-radius: 0.65rem;
-    background: #fff4e8;
-    color: #d76a18;
-  }
-  .sm-brand b {
-    font-size: 1.1rem;
-    letter-spacing: -0.055em;
+  .sm-brand :global(.brand-logo) {
+    --brand-logo-symbol-size: 2rem;
+    --brand-logo-wordmark-size: 1.1rem;
   }
   .sm-header nav {
     display: flex;
@@ -95,13 +82,13 @@ const trialUrl = "https://salonmaster.com.br/cadastro";
     margin: auto;
   }
   .sm-header nav a {
-    color: #4e5874;
+    color: var(--color-text-body);
     font-size: 0.82rem;
     font-weight: 730;
     text-decoration: none;
   }
   .sm-header nav a:hover {
-    color: #d76a18;
+    color: var(--color-brand-text);
   }
   .sm-header__cta {
     min-height: 2.9rem;
@@ -128,31 +115,31 @@ const trialUrl = "https://salonmaster.com.br/cadastro";
       justify-content: center;
       gap: 0.32rem;
       margin-left: auto;
-      border: 1px solid #dfe2f2;
+      border: 1px solid var(--color-border);
       border-radius: 0.65rem;
-      background: #fff;
+      background: var(--color-bg-card);
     }
     .sm-menu i {
       display: block;
       width: 1.05rem;
       height: 1.5px;
-      background: #151a3b;
+      background: var(--color-text-heading);
     }
     .sm-header__mobile {
       display: grid;
-      border-top: 1px solid #e7e8f2;
-      background: #fff;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-bg-page);
       padding: 1rem 1.25rem 1.2rem;
     }
     .sm-header__mobile a {
       padding: 0.8rem 0;
-      color: #151a3b;
+      color: var(--color-text-heading);
       font-size: 0.9rem;
       font-weight: 700;
       text-decoration: none;
     }
     .sm-header__mobile a:last-child {
-      color: #d76a18;
+      color: var(--color-brand-text);
     }
   }
 </style>
